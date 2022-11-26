@@ -45,6 +45,20 @@ serviceAccount:
 # imagePullSecrets:
 # - name: myimagepullsecret
 
+
+podSecurityContext:
+  enabled: true
+  fsGroup: 5984
+
+containerSecurityContext:
+  enabled: true
+  runAsUser: 5984
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+
 ## The storage volume used by each Pod in the StatefulSet. If a
 ## persistentVolume is not enabled, the Pods will use `emptyDir` ephemeral
 ## local storage. Setting the storageClass attribute to "-" disables dynamic
